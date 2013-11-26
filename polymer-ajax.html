@@ -39,7 +39,7 @@ license that can be found in the LICENSE file.
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="polymer-xhr.html">
 
-<polymer-element name="polymer-ajax" attributes="url handleAs auto params response method">
+<polymer-element name="polymer-ajax" attributes="url handleAs auto params response method headers">
   <script>
     Polymer('polymer-ajax', {
       /**
@@ -100,6 +100,22 @@ license that can be found in the LICENSE file.
        * @default ''
        */
       method: '',
+      /**
+       * HTTP request headers to send.
+       *
+       * Example:
+       *
+       *     <polymer-ajax auto url="http://somesite.com"
+       *         headers='{"X-Requested-With": "XMLHttpRequest"}'
+       *         handleAs="json"
+       *         on-polymer-response="{{handleResponse}}">
+       *     </polymer-ajax>
+       *  
+       * @attribute headers
+       * @type Object
+       * @default null
+       */
+      headers: null,
       ready: function() {
         this.xhr = document.createElement('polymer-xhr');
       },
@@ -179,6 +195,10 @@ license that can be found in the LICENSE file.
         args.params = this.params || null;
         if (args.params && typeof(args.params) == 'string') {
           args.params = JSON.parse(args.params);
+        }
+        args.headers = this.headers || null;
+        if (args.headers && typeof(args.headers) == 'string') {
+          args.headers = JSON.parse(args.headers);
         }
         args.callback = this.receive.bind(this);
         args.url = this.url;
