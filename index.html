@@ -52,6 +52,7 @@
       var path = location.pathname.split('/');
       var module = path.pop() || path.pop();
       document.querySelector('iframe').src = remoteDocs + module;
+      document.querySelector('title').textContent = name;
     }
     // for testing only
     var opts = window.location.search;
