@@ -9,11 +9,13 @@
 </head>
 <body>
 
-  <polymer-ajax auto url="http://gdata.youtube.com/feeds/api/videos/" 
-      params='{"alt":"json", "q":"chrome"}'
-      handleAs="json">
-  </polymer-ajax>
-  
+  <polymer-ajax 
+    url="http://gdata.youtube.com/feeds/api/videos/"
+    params='{"alt":"json", "q":"chrome"}'
+    handleAs="json"
+    auto
+  ></polymer-ajax>
+
   <script>
     var assert = chai.assert;
     document.addEventListener('WebComponentsReady', function() {

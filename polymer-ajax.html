@@ -116,6 +116,20 @@ license that can be found in the LICENSE file.
        * @default null
        */
       headers: null,
+      /**
+       * Optional raw body content to send when method === "POST"
+       *
+       * Example:
+       *
+       *     <polymer-ajax method="POST" auto url="http://somesite.com"
+       *         body='{"foo":1, "bar":2}'>
+       *     </polymer-ajax>
+       *  
+       * @attribute body
+       * @type Object
+       * @default null
+       */
+      body: null,
       ready: function() {
         this.xhr = document.createElement('polymer-xhr');
       },
@@ -192,11 +206,15 @@ license that can be found in the LICENSE file.
        */
       go: function() {
         var args = this.xhrArgs || {};
-        args.params = this.params || null;
+        // TODO(sjmiles): alternatively, we could force POST if body is set
+        if (this.method === 'POST') {
+          args.body = this.body || args.body;
+        }
+        args.params = this.params || args.params;
         if (args.params && typeof(args.params) == 'string') {
           args.params = JSON.parse(args.params);
         }
-        args.headers = this.headers || null;
+        args.headers = this.headers || args.headers;
         if (args.headers && typeof(args.headers) == 'string') {
           args.headers = JSON.parse(args.headers);
         }
