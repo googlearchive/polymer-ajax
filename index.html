@@ -27,7 +27,7 @@
       width: 100%;
       height: 100%;
     }
-    span {
+    #remote {
       position: absolute;
       top: 0;
       right: 0;
@@ -40,7 +40,7 @@
   <img detector src="../polymer-home-page/bowager-logo.png" onerror="noviewer()">
   <polymer-home-page ifviewer></polymer-home-page>
   <div ifnoviewer>
-    <span>[remote]</span>
+    <span id="remote">[remote]</span>
     <iframe></iframe>
   </div>
   <!-- -->
