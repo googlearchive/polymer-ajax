@@ -85,7 +85,7 @@ license that can be found in the LICENSE file.
         }
         this.makeReadyStateHandler(xhr, options.callback);
         this.setRequestHeaders(xhr, options.headers);
-        xhr.send(method == 'POST' || 'PUT' ? (options.body || params) : null);
+        xhr.send(method == 'POST' || method == 'PUT' ? (options.body || params) : null);
         if (!async) {
           xhr.onreadystatechange(xhr);
         }
